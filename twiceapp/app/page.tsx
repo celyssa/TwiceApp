@@ -119,69 +119,97 @@ export default function Home() {
 
   //HTML/TAILWIND 
   return (
+    <main style={{ 
+      backgroundImage: 'url(https://w0.peakpx.com/wallpaper/407/308/HD-wallpaper-pink-color-orange-sunset.jpg)',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      minHeight: '100vh',
+      padding: '20px',
+    }}>
+      <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontSize: '30px', marginTop: '10px' }}>
+    <b>🍭🅃🅆🄸🄲🄴 🅃🄾🄺🄴🄽 🍭</b>
+  </p>
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+  <img src="https://i.pinimg.com/originals/f9/61/18/f961181ca1a75ca3772d967250c7e834.jpg" alt="twice" style={{ maxWidth: '100%', maxHeight: '350px' }} />
+</div>
+
+
+  <div style={{ minHeight: '25vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+    <button onClick={() => { connectWallet(); }} className="p-2 bg-white text-FC8EAC rounded" style={{ marginBottom: '10px' }}>
+      {walletKey !== "" ? walletKey : " Connect wallet"}
+    </button>
+
+    <button onClick={importToken} className="p-2 bg-white text-FC8EAC rounded" style={{ marginTop: '10px', marginBottom: '10px' }}>
+      Import Token
+    </button>
+  </div>
+
+  <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+    <form>
+      <div style={{ marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <label style={{ color: '#FFFFFF', fontSize: '18px' }}><b>Amount to Mint:</b></label>
+      </div>
+      <div>
+        <input
+          type="number"
+          value={mintingAmount}
+          onChange={(e) => mintAmountChange(e)}
+          style={{ fontSize: '16px', padding: '5px' }}
+        />
+      </div>
+    </form>
+    <button
+      onClick={() => { mintCoin(); }}
+      className="p-2 bg-white text-FC8EAC rounded" style={{ marginTop: '10px' }}>
+      {"Mint Token"}
+    </button>
+  </div>
+
+  <br></br>
+
+  <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '10vh' }}>
+    <form>
+      <div style={{ marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <label style={{ color: '#FFFFFF', fontSize: '18px' }}><b>Amount to Stake:</b></label>
+      </div>
+      <div>
+        <input
+          type="number"
+          value={stakingAmount}
+          onChange={(e) => stakeAmountChange(e)}
+          style={{ fontSize: '16px', padding: '5px' }}
+        />
+      </div>
+    </form>
+    <button
+      onClick={stakeCoin}
+      className="p-2 bg-white text-FC8EAC rounded" style={{ marginTop: '10px' }}>
+      {"Stake It"}
+    </button>
+  </div>
+
+  
+  <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '20vh' }}>
+    <br></br>
+  <div style={{ marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <img src="https://i.pinimg.com/736x/60/f8/c5/60f8c50dc4407cc928eae66e430f4924.jpg" alt="Loading GIF" style={{ maxWidth: '100%', maxHeight: '250px' }} />
+  </div>
+
     
-      <main>
-        <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontSize: '30px', marginTop: '10px' }}>
-        Welcome to Mint/Staking of Twice Tokens
-        </p>
-  
-        <div style={{ minHeight: '25vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <button onClick={() => { connectWallet(); }} className="p-3 bg-red-400 text-white rounded">
-            {walletKey !== "" ? walletKey : " Connect wallet"}
-          </button>
-  
-          <button onClick={importToken} className="p-3 bg-red-400 text-white rounded" style={{ marginTop: '10px' }}>
-            Import Token
-          </button>
-        </div>
-  
-        <div style={{marginTop: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <label style={{ color: '#FFFFFF', fontSize: '13px' }}>Wait a minute before withdrawing..</label>
+    </div>
 
-          <form>
-            <label> Input Amount To Mint</label><br></br>
-          </form>
-          <input
-            type="number"
-            value={mintingAmount}
-            onChange={(e) => mintAmountChange(e)}
-          />
-          <button
-            onClick={() => { mintCoin(); }}
-            className="p-3 bg-red-400 text-white rounded">
-            {"Mint Token"}
-          </button>
-        </div>
-  
-        <br></br>
-  
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '10vh' }}>
-          <form>
-            <label> Input Amount To Stake</label><br></br>
-          </form>
-          <input
-            type="number"
-            value={stakingAmount}
-            onChange={(e) => stakeAmountChange(e)}
-          />
-  
-          <button
-            onClick={stakeCoin}
-            className="p-3 bg-red-400 text-white rounded">
-            {"Stake It"}
-          </button>
-        </div>
-  
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '20vh' }}>
-          <br></br>
-          <label>Wait for At least 1 min before Withdrawing </label>
+    <button
+      onClick={withdrawCoin}
+      className="p-2 bg-white text-FC8EAC rounded" style={{ marginTop: '10px' }}>
+      {"Withdraw"}
+    </button>
+  </div>
+</main>
 
-          <button
-            onClick={withdrawCoin}
-            className="p-3 bg-red-400 text-white rounded">
-            {"Withdraw"}
-          </button>
-        </div>
-      </main>
+  
 
   );
 }  

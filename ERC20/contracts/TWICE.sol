@@ -12,7 +12,7 @@ contract TWICE is ERC20, Ownable {
     uint256 private lockInPeriod = 60;
 
     constructor(address initialOwner) 
-        ERC20("TWICE", "TTT") 
+        ERC20("TwiceToken", "TTT") 
         Ownable(initialOwner)
     {}
 
@@ -24,8 +24,8 @@ contract TWICE is ERC20, Ownable {
     function stake(uint256 amount) public {
         uint256 adjustedAmount = amount * 1e18;
 
-        require(adjustedAmount > 0, "Sorry, you cannot stake 0 tokens.");
-        require(balanceOf(msg.sender) >= adjustedAmount, "Insufficient Balance (˚ ˃̣̣̥⌓˂̣̣̥ )");
+        require(adjustedAmount > 0, "Sorry, you cannot stake 0 tokens");
+        require(balanceOf(msg.sender) >= adjustedAmount, "Insufficient Balance");
 
         _stakes[msg.sender] += adjustedAmount;
         _lastStakeTimestamp[msg.sender] = block.timestamp;
